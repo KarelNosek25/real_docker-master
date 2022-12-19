@@ -106,5 +106,68 @@ public class DatabaseFiller {
         Player player49 = playerService.save(new Player("Gabriel", "Jesus", 61f, 17, "Útočník", club10));
         Player player50 = playerService.save(new Player("Thomas", "Partey", 62f, 18, "Střední záložník", club10));
 
+        Worker worker1 = workerService.save(new Worker("worker1@email.cz", "heslo", "Jan", "Novák", "605854159", null));
+        Worker worker2 = workerService.save(new Worker("worker2@email.cz", "heslo", "Petr", "Mladý", "745951236", null));
+        Worker worker3 = workerService.save(new Worker("worker3@email.cz", "heslo", "Iva", "Horká", "621159085", null));
+        Worker worker4 = workerService.save(new Worker("worker4@email.cz", "heslo", "Patrik", "Polívka", "789425621", null));
+        Worker worker5 = workerService.save(new Worker("worker5@email.cz", "heslo", "Jindřich", "Skotal", "689999520", null));
+        Worker worker6 = workerService.save(new Worker("worker6@email.cz", "heslo", "Martina", "Sedláčková", "705520236", null));
+        Worker worker7 = workerService.save(new Worker("worker7@email.cz", "heslo", "Jana", "Horská", "654145145", null));
+        Worker worker8 = workerService.save(new Worker("worker8@email.cz", "heslo", "Josef", "Oblý", "809621589", null));
+        Worker worker9 = workerService.save(new Worker("worker9@email.cz", "heslo", "Jan", "Potměšil", "874541002", null));
+        Worker worker10 = workerService.save(new Worker("worker10@email.cz", "heslo", "Ivana", "Červená", "600200523", null));
+        Worker worker11 = workerService.save(new Worker("worker11@email.cz", "heslo", "Jirka", "Blažek", "841520000", null));
+        Worker worker12 = workerService.save(new Worker("worker12@email.cz", "heslo", "Monika", "Blašková", "850369369", null));
+        Worker worker13 = workerService.save(new Worker("worker13@email.cz", "heslo", "Ondřej", "Veselý", "546587478", null));
+        Worker worker14 = workerService.save(new Worker("worker14@email.cz", "heslo", "Lenka", "Nosková", "650000259", null));
+        Worker worker15 = workerService.save(new Worker("worker15@email.cz", "heslo", "Gustav", "Ovčák", "600300500", null));
+        Worker worker16 = workerService.save(new Worker("worker16@email.cz", "heslo", "Gabriela", "Nekukalová", "800400952", null));
+        Worker worker17 = workerService.save(new Worker("worker17@email.cz", "heslo", "Simona", "Kulatá", "740742852", null));
+        Worker worker18 = workerService.save(new Worker("worker18@email.cz", "heslo", "Jana", "Bílá", "600258967", null));
+        Worker worker19 = workerService.save(new Worker("worker19@email.cz", "heslo", "František", "Kličpera", "602548987", null));
+        Worker worker20 = workerService.save(new Worker("admin@email.cz", "heslo", "Helena", "Fousková", "750006987", null));
+
+        worker1.setBoss(worker20);
+        worker2.setBoss(worker20);
+        worker3.setBoss(worker20);
+        worker4.setBoss(worker20);
+        worker5.setBoss(worker20);
+        worker6.setBoss(worker20);
+        worker7.setBoss(worker20);
+        worker8.setBoss(worker20);
+        worker9.setBoss(worker20);
+        worker10.setBoss(worker20);
+        worker11.setBoss(worker20);
+        worker12.setBoss(worker20);
+        worker13.setBoss(worker20);
+        worker14.setBoss(worker20);
+        worker15.setBoss(worker20);
+        worker16.setBoss(worker20);
+        worker17.setBoss(worker20);
+        worker18.setBoss(worker20);
+        worker19.setBoss(worker20);
+
+        worker20.setRole(Role.ADMIN);
+
+        workerService.update(worker1);
+        workerService.update(worker2);
+        workerService.update(worker3);
+        workerService.update(worker4);
+        workerService.update(worker5);
+        workerService.update(worker6);
+        workerService.update(worker7);
+        workerService.update(worker8);
+        workerService.update(worker9);
+        workerService.update(worker10);
+        workerService.update(worker11);
+        workerService.update(worker12);
+        workerService.update(worker13);
+        workerService.update(worker14);
+        workerService.update(worker15);
+        workerService.update(worker16);
+        workerService.update(worker17);
+        workerService.update(worker18);
+        workerService.update(worker19);
+        workerService.update(worker20);
     }
 }
