@@ -46,20 +46,20 @@ public class Player {
 
     }
 
-    public Player(float weight, String playerFirstName, String playerSurName, String position, int age) {
-        this.weight = weight;
+    public Player(String playerFirstName, String playerSurName, float weight,  int age, String position) {
         this.playerFirstName = playerFirstName;
         this.playerSurName = playerSurName;
-        this.position = position;
+        this.weight = weight;
         this.age = age;
+        this.position = position;
     }
 
-    public Player(float weight, String playerFirstName, String playerSurName, String position, int age, Club club) {
-        this.weight = weight;
+    public Player(String playerFirstName, String playerSurName, float weight,  int age, String position, Club club) {
         this.playerFirstName = playerFirstName;
         this.playerSurName = playerSurName;
-        this.position = position;
+        this.weight = weight;
         this.age = age;
+        this.position = position;
         this.club = club;
     }
 
