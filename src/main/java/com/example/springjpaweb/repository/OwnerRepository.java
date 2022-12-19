@@ -9,5 +9,5 @@ import java.util.List;
 public interface OwnerRepository extends JpaRepository<Owner, Long> {
 
     @Query("SELECT DISTINCT ow FROM Owner ow LEFT JOIN ow.club sh")
-    List<Owner> findOwnersAndShip();
+    List<Owner> findOwnersAndClub();
 }
