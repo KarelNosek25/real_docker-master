@@ -18,7 +18,7 @@ public class LogAdvice {
         long timestamp1 = System.nanoTime();
         Object o = pjp.proceed();
         long timestamp2 = System.nanoTime();
-        System.out.println("Elapsed ms: " + (timestamp2-timestamp1)/1000000);
+        System.out.println("Elapsed ms: " + (timestamp2 - timestamp1) / 1000000);
         return o;
     }
 }
