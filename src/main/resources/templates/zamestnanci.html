@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+l
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Studentský projekt Nosek</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/css/main.css"/>
+
+    <link rel="shortcut icon" href="/img/uhk.png" type="image/png" sizes="16x16">
+</head>
+
+<body>
+
+<header class="obecne">
+    <img src="/img/logo.png" class="logo" alt="Fotbalová databáze Nosek">
+</header>
+
+<nav class="navigace obecne">
+    <nav class="vlevoNav">
+        <a class="nav1" href='/uvod'>ÚVOD </a>
+        <a class="nav2" href='/editace-zamestnancu'> ZAMĚSTANCI </a>
+        <a class="nav2" href='/editace-klubu'> KLUBY </a>
+    </nav>
+    <nav class="vpravoNav">
+        <div sec:authorize="isAuthenticated()">
+            <a href="javascript: document.logoutForm.submit()" class="dropdown-toggle nav1"
+               th:text="${'ODHLÁSIT UŽIVATELE: ' + #authentication.getPrincipal().getUsername()}"></a>
+            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                <input hidden type="submit" value="Sign Out"/>
+            </form>
+        </div>
+    </nav>
+</nav>
+
+<div class="popup" id="myForm">
+    <form class="container">
+        <button type="button" class="close" onclick="closeForm()">x</button>
+        <h2>Detaily zaměstnance</h2>
+        <div class="oddelit">
+            <label for="jmeno">Jméno</label>
+            <input type="text" id="jmeno"><br>
+        </div>
+        <div class="oddelit">
+            <label for="prijmeni">Příjmení</label>
+            <input type="text" id="prijmeni"><br>
+        </div>
+        <div class="oddelit">
+            <label for="naklad">Pozice</label>
+            <select id="naklad">
+                <option value="WORKER">Řadový zaměstnanec</option>
+                <option value="ADMIN">Admin</option>
+            </select><br>
+        </div>
+        <div class="oddelit">
+            <label for="email">Email</label>
+            <input id="email" type="text"><br>
+        </div>
+        <div class="oddelit">
+            <label for="telefon">Telefon</label>
+            <input type="text" id="telefon"><br>
+        </div>
+        <button type="submit" class="myButton3 uprostred" id="updateWorker">Uložit</button>
+        <button type="button" class="myButton2 uprostred" id="deleteWorker">Smazat</button>
+    </form>
+</div>
+
+<article class="clanek2 obecne">
+    <h2 class="uprostredN">Evidence zaměstnanců</h2>
+    <div class="odstavec2">
+        <h3 class="velke">Seznam zaměstnanců</h3>
+
+        <table class="table2">
+            <tr>
+                <th>ID</th>
+                <th>Jméno</th>
+                <th>Příjmení</th>
+                <th>Pozice</th>
+                <th>Email</th>
+                <th>Telefon</th>
+                <th>Upravit údaje</th>
+            </tr>
+            <tr th:each="worker: ${workers}">
+                <td th:text="${worker.id}"></td>
+                <td th:text="${worker.firstName}"></td>
+                <td th:text="${worker.sureName}"></td>
+                <td th:switch="${worker.role}">
+                    <span th:case="${T(com.example.springjpaweb.enums.Role).ADMIN}">Admin</span>
+                    <span th:case="${T(com.example.springjpaweb.enums.Role).WORKER}">Pracovník</span>
+                    <span th:case="*">Bez pozice</span>
+                </td>
+                <td th:text="${worker.email}"></td>
+                <td th:text="${worker.phone}"></td>
+                <td>
+                    <button class="myButton1 uprostred editWorker" th:attr="data-worker_id=${worker.id}" type="button">
+                        Upravit
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- přidání nového zaměstnance -->
+    <div class="odstavec2 odsadit2">
+        <h3 class="velke"> Přidat nového zaměstnance:</h3>
+
+        <!--obrázek-->
+        <div class="obrVpravo">
+            <img src="/img/obr1.jpg" class="obrazek4" alt="Obrázek zaměstnanců">
+        </div>
+
+        <div class="novyVlevo" id="newWorkerForm">
+            <div class="oddelit">
+                <label>Jméno:</label>
+                <input class="vpravo" type="text" placeholder="Jméno" id="firstName"><br>
+            </div>
+            <div class="oddelit">
+                <label>Příjmení:</label>
+                <input class="vpravo" type="text" placeholder="Příjmení" id="sureName"><br>
+            </div>
+            <div class="oddelit">
+                <label>Pozice:</label>
+                <select class="vpravo" id="role">
+                    <option value="WORKER">Řadový zaměstnanec</option>
+                    <option value="ADMIN">Admin</option>
+                </select><br>
+            </div>
+            <div class="oddelit">
+                <label>Email:</label>
+                <input class="vpravo" type="text" placeholder="Email" id="emailNew"><br>
+            </div>
+            <div class="oddelit">
+                <label>Heslo:</label>
+                <input class="vpravo" type="password" placeholder="Heslo" id="password"><br>
+            </div>
+            <div class="oddelit">
+                <label>Telefon:</label>
+                <input class="vpravo" type="text" placeholder="Telefonní číslo" id="phone"><br>
+            </div>
+            <div class="oddelit">
+                <input class="myButton1 uprostred" id="postWorker" type="submit" value="Přidat">
+            </div>
+        </div>
+    </div>
+</article>
+
+<div class="footer obecne">
+    <p> Copyright &copy; 2023 | Karel Nosek - studentský projekt z předmětu PPRO</p>
+</div>
+
+<script src="/js/lib/popupWindow.js"></script>
+<script type="module" src="/js/zamestnanci.js"></script>
+
+</body>
+
+</html>
