@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Studentský projekt Nosek</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/css/main.css"/>
+
+    <link rel="shortcut icon" href="/img/uhk.png" type="image/png" sizes="16x16">
+</head>
+
+<body>
+
+<header class="obecne">
+    <img src="/img/logo.png" class="logo" alt="Fotbalová databáze Nosek">
+</header>
+
+<nav class="navigace obecne">
+    <nav class="vlevoNav">
+        <a class="nav1" href='/uvod'>ÚVOD </a>
+        <a class="nav2" href='/editace-zamestnancu'> ZAMĚSTANCI </a>
+        <a class="nav2" href='/editace-klubu'> KLUBY </a>
+    </nav>
+    <nav class="vpravoNav">
+        <div sec:authorize="isAuthenticated()">
+            <a href="javascript: document.logoutForm.submit()" class="dropdown-toggle nav1"
+               th:text="${'ODHLÁSIT UŽIVATELE: ' + #authentication.getPrincipal().getUsername()}"></a>
+            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                <input hidden type="submit" value="Sign Out"/>
+            </form>
+        </div>
+    </nav>
+</nav>
+
+<article class="clanek obecne">
+    <h2>Základní info</h2>
+    <div class="odstavec">
+
+        <img src="/img/obr5.jpg" sizes="100x100" class="obrazek" alt="Obrázek stadionu">
+
+        <p>
+            Budova naší fotbalová databáze je umístěna na levém břehu Vltavy v Praze 8. Je určena hlavně pro evidenci
+            fotbalových klubů a jejich hráčů. Může ale též sloužit pro evidenci zaměstnanců naší firmy. Pro bližší info
+            jak se k těmto informacím dostat naleznete dole na této stránce.
+        </p>
+        <p class="odsadit">
+            Každý klub zde má uvedeny některé důležité základní údaje, jako jsou jméno, země či filozofie klubu. Taktéž
+            zde můžete naleznout informace k jejich vlastníkům a všem hráčům, kterými klub disponuje. Tito hráči pak
+            mají
+            v tabulce uvedeny taktéž své základní údaje, jako jméno, příjmení, věk, váha asamozřejmě pozici, na které
+            hrají.
+        </p>
+    </div>
+</article>
+
+<article class="clanek obecne">
+    <h2>Část pro zaměstnance</h2>
+    <div class="odstavec">
+        <p class="odsadit">Abyste mohli zobrazit tabulky s kluby a se zaměstnanci, musíte být přihlášen. Pro editaci
+            údajů musíte též kromě přihlašovacích údajů vlastnit i dostatečně silná oprávnění (Pracovník/Admin).
+        </p>
+        <p class="odsadit">Na naší stránce se dají zobrazit různé stránky s mnoha tabulkami. Jedna z těchto stránek je
+            přehled všech zaměstnanců. V této tabulce, kterou jako přihlášení můžete nalézt, je databáze se zaměstnanci
+            a jejich údaji.
+            A jak již bylo řečeno výše, pokud na to máte oprávnění, můžete tyto údaje i editovat.
+        </p>
+        <p class="odsadit">
+            Druhá stránka, kterou si můžete zobrazit je editace klubů. Zde se nacházejí všechny kluby v jedné tabulce.
+            Po kliknutí na tlačítko detail můžete tyto kluby upravit (jejich údaje). Opět ale pouze tehdy,
+            pokud na to máte oprávnění. Údaje pro přihlášení na naše stránky Vám sdělíme pokud budete na
+            pracovním pohovoru úspěšně přijat.
+        </p>
+
+    </div>
+</article>
+
+<div class="footer obecne">
+    <p> Copyright &copy; 2023 | Karel Nosek - studentský projekt z předmětu PPRO</p>
+</div>
+
+<script src="/js/lib/popupWindow.js"></script>
+
+</body>
+
+</html>
