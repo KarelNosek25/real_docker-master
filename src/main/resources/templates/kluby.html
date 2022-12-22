@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Studentský projekt Nosek </title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/css/main.css"/>
+
+    <link rel="shortcut icon" href="/img/uhk.png" type="image/png" sizes="16x16">
+</head>
+
+<body>
+
+<header class="obecne">
+    <img src="/img/logo.png" class="logo" alt="Fotbalová databáze Nosek">
+</header>
+
+<div class="popup" id="myForm">
+    <form class="container">
+        <button type="button" class="close" onclick="closeForm()">x</button>
+        <h2>Detaily klubu</h2>
+        <div class="oddelit">
+            <label for="nazevKlubu">Název klubu</label>
+            <input type="text" id="nazevKlubu"><br>
+        </div>
+        <div class="oddelit">
+            <label for="nazevZeme">Země</label>
+            <input type="text" id="nazevZeme"><br>
+        </div>
+        <div class="oddelit">
+            <label for="filozofie">Typ filozofie</label>
+            <select id="filozofie">
+                <option value="YOUNG_PLAYERS">Mladí hráči</option>
+                <option value="FINANCIALS">Kupování hvězd</option>
+                <option value="HOME_PLAYERS">Domácí hráči</option>
+                <option value="LOAN">Hráči na hostování</option>
+            </select><br>
+        </div>
+        <div class="oddelit">
+            <label for="jmenoV">Jméno vlastníka klubu</label>
+            <input type="text" id="jmenoV"><br>
+        </div>
+        <div class="oddelit">
+            <label for="prijmeniV">Příjmení vlastníka klubu</label>
+            <input type="text" id="prijmeniV"><br>
+        </div>
+        <div class="oddelit">
+            <label for="typFirmy">Typ firmy</label>
+            <select id="typFirmy">
+                <option value="FUELS">Paliva</option>
+                <option value="VEHICLES">Automobilový průmysl</option>
+                <option value="MACHINERY">Strojový průmysl</option>
+                <option value="CLOTHES">Móda</option>
+                <option value="OTHERS">Ostatní</option>
+            </select><br>
+        </div>
+        <button type="submit" class="myButton3 uprostred" id="ulozitKlub">Uložit</button>
+        <button type="button" class="myButton2 uprostred" id="smazatKlub">Smazat</button>
+    </form>
+</div>
+
+<div class="popup" id="myForm3">
+    <form class="container">
+        <button type="button" class="close" onclick="closeForm3()">x</button>
+        <h2>Přidat nového hráče</h2>
+        <div class="oddelit">
+            <label for="jmenoHraceP">Jméno hráče</label>
+            <input type="text" id="jmenoHraceP"><br>
+        </div>
+        <div class="oddelit">
+            <label for="prijmeniHraceP">Příjmení hráče</label>
+            <input type="text" id="prijmeniHraceP"><br>
+        </div>
+        <div class="oddelit">
+            <label for="vekHraceP">Věk</label>
+            <input type="number" id="vekHraceP"><br>
+        </div>
+        <div class="oddelit">
+            <label for="vahaHraceP">Váha</label>
+            <input type="number" id="vahaHraceP"><br>
+        </div>
+        <div class="oddelit">
+            <label for="poziceHraceP">Pozice</label>
+            <input type="text" id="poziceHraceP"><br>
+        </div>
+        <button type="submit" class="myButton3 uprostred" id="ulozitHraceP">Uložit</button>
+    </form>
+</div>
+
+<nav class="navigace obecne">
+    <nav class="vlevoNav">
+        <a class="nav1" href='/uvod'>ÚVOD </a>
+        <a class="nav2" href='/editace-zamestnancu'> ZAMĚSTANCI </a>
+        <a class="nav2" href='/editace-klubu'> KLUBY </a>
+    </nav>
+    <nav class="vpravoNav">
+        <div sec:authorize="isAuthenticated()">
+            <a href="javascript: document.logoutForm.submit()" class="dropdown-toggle nav1"
+               th:text="${'ODHLÁSIT UŽIVATELE: ' + #authentication.getPrincipal().getUsername()}"></a>
+            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                <input hidden type="submit" value="Sign Out"/>
+            </form>
+        </div>
+    </nav>
+</nav>
+
+<article class="clanek3 obecne">
+    <h2 class="uprostredN">Editace klubu</h2>
+    <div class="odstavec2">
+        <h3 class="velke">Seznam všech klubů a jejich hráčů</h3>
+
+        <table class="table2">
+            <tr>
+                <th>ID klubu</th>
+                <th>Název klubu</th>
+                <th>Země</th>
+                <th>Typ filozofie</th>
+                <th>Jméno vlastníka</th>
+                <th>Příjmení vlastníka</th>
+                <th>Typ firmy</th>
+                <th>Upravit údaje</th>
+                <th>Zobrazit hráče</th>
+            </tr>
+            <tr th:each="owner: ${clubData}">
+                <td th:text="${owner.club.id}"></td>
+                <td th:text="${owner.club.name}"></td>
+                <td th:text="${owner.club.country}"></td>
+                <td th:text="${owner.club.philosophyType}"></td>
+                <td th:text="${owner.ownerFirstName}"></td>
+                <td th:text="${owner.ownerSurName}"></td>
+                <td th:switch="${owner.firmType}">
+                    <span th:case="${T(com.example.springjpaweb.enums.FirmType).FUELS}">Paliva</span>
+                    <span th:case="${T(com.example.springjpaweb.enums.FirmType).VEHICLES}">Automobilový průmysl</span>
+                    <span th:case="${T(com.example.springjpaweb.enums.FirmType).MACHINERY}">Strojový průmysl</span>
+                    <span th:case="${T(com.example.springjpaweb.enums.FirmType).CLOTHES}">Móda</span>
+                    <span th:case="${T(com.example.springjpaweb.enums.FirmType).OTHERS}">Ostatní</span>
+                </td>
+                <td>
+                    <button class="myButton1 uprostred editClubButton" type="button"
+                            th:attr="data-owner_id=${owner.id},
+                                    data-club_id=${owner.club.id}">Upravit
+                    </button>
+                </td>
+                <td>
+                    <button class="myButton1 uprostred loadPlayerButton" type="button"
+                            th:attr="data-club_id=${owner.club.id},
+                                     data-club_name=${owner.club.name}">Hráči
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="odstavec2" id="hraciDiv" hidden="true">
+    </div>
+
+    <div>
+        <button type="button" class="myButton1 uprostred" id="addNewPlayer" onclick="openForm3()"
+                style="display: none;">
+            Přidat nového hráče
+        </button>
+    </div>
+
+    <div class="odstavec2">
+        <h3 class="velke">Přidat nový klub</h3>
+
+        <div class="obrVpravo">
+            <img src="/img/obr3.jpg" class="obrazek4" alt="Obrázek stadionu">
+        </div>
+
+        <div class="novyVlevo" id="novyKlub">
+            <div class="oddelit">
+                <label>Název klubu:</label>
+                <input class="vpravo" type="text" placeholder="Název klubu" id="nazevKlubuN"><br>
+            </div>
+            <div class="oddelit">
+                <label>Země:</label>
+                <input class="vpravo" type="text" placeholder="Země" id="zemeN"><br>
+            </div>
+            <div class="oddelit">
+                <label>Druh filozofie:</label>
+                <select class="vpravo" id="filozofieN">
+                    <option value="YOUNG_PLAYERS">Mladí hráči</option>
+                    <option value="FINANCIALS">Kupování hvězd</option>
+                    <option value="HOME_PLAYERS">Domácí hráči</option>
+                    <option value="LOAN">Hráči na hostování</option>
+                </select><br>
+            </div>
+            <div class="oddelit">
+                <label>Jméno vlastníka klubu:</label>
+                <input class="vpravo" type="text" id="jmenoVlastnikaN"><br>
+            </div>
+            <div class="oddelit">
+                <label>Příjmení vlastníka klubu:</label>
+                <input class="vpravo" type="text" id="prijmeniVlastnikaN"><br>
+            </div>
+            <div class="oddelit">
+                <label>Typ firmy:</label>
+                <select class="vpravo" id="typFirmyN">
+                    <option value="FUELS">Paliva</option>
+                    <option value="VEHICLES">Automobilový průmysl</option>
+                    <option value="MACHINERY">Strojový průmysl</option>
+                    <option value="CLOTHES">Móda</option>
+                    <option value="OTHERS">Ostatní</option>
+                </select><br>
+            </div>
+            <div class="oddelit">
+                <input class="myButton1 uprostred" type="submit" value="Přidat" id="pridatKlub">
+            </div>
+        </div>
+    </div>
+</article>
+
+<div class="footer obecne">
+    <p> Copyright &copy; 2023 | Karel Nosek - studentský projekt z předmětu PPRO</p>
+</div>
+
+<script src="/js/lib/popupWindow.js"></script>
+<script type="module" src="/js/editace.js"></script>
+
+</body>
+</html>
