@@ -1,0 +1,423 @@
+/* STYLOVÁNÍ PRO TABULKY */
+table,
+th,
+td {
+    border: 2px solid;
+}
+
+table {
+    width: 100%;
+    max-height: 200px;
+    display: block;
+    overflow-x: auto;
+    border-spacing: 0;
+    border-radius: 5px;
+}
+
+.table2 {
+    margin: 0 auto 40px auto;
+    max-height: 500px;
+}
+
+tbody {
+    white-space: nowrap;
+}
+
+th,
+td {
+    padding: 5px 10px;
+    border-top-width: 0;
+    border-left-width: 0;
+    width: 200px
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    vertical-align: bottom;
+}
+
+th:last-child,
+td:last-child {
+    border-right-width: 0;
+}
+
+tr:last-child td {
+    border-bottom-width: 0;
+}
+
+.oddelit {
+    padding: 8px;
+}
+
+.oddelit2 {
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+}
+
+/* OBECNÉ STYLOVÁNÍ */
+
+body {
+    background-image: url("../img/pozadi.png");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: auto;
+    min-width: 1024px;
+    max-width: 1400px;
+}
+
+.obecne {
+    margin: 5px auto;
+    font-family: Georgia, serif;
+    border-radius: 5px;
+    width: 98%;
+}
+
+p {
+    letter-spacing: 0.4px;
+}
+
+/*STYLOVÁNÍ PRO ČLÁNKY*/
+
+.clanek {
+    background-color: white;
+    padding-bottom: 20px;
+    border: 2px solid black;
+}
+
+.clanek2 {
+    background-color: white;
+    border: 2px solid black;
+    padding-bottom: 50px;
+}
+
+.clanek3 {
+    background-color: white;
+    padding-bottom: 100px;
+    border: 2px solid black;
+}
+
+.odstavec {
+    margin: 10px;
+}
+
+.odstavec2 {
+    margin: 10px;
+    height: auto;
+}
+
+.odstavec3 {
+    display: flex;
+    justify-content: center;
+    height: auto;
+}
+
+.odsadit {
+    margin-left: 10px
+}
+
+.odsadit2 {
+    padding-bottom: 20px
+}
+
+.ceny {
+    width: 38%;
+}
+
+.ceny2 {
+    width: 20%;
+}
+
+.obal {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.uprostredN {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.vpravo {
+    float: right;
+    width: 160px
+}
+
+.novyVlevo {
+    width: 45%;
+}
+
+.obrVpravo {
+    width: 45%;
+    float: right;
+}
+
+/* STYLOVÁNÍ PRO LOGO */
+
+.logo {
+    border-radius: 5px;
+    width: 100%;
+    height: auto;
+    border: 2px solid black;
+}
+
+/* STYLOVÁNÍ PRO ODKAZY (NAVIGACI) */
+
+.navigace {
+    font-size: 20px;
+    background-color: white;
+    border: 2px solid black;
+    height: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #343434;
+    font-family: 'Orienta', sans-serif;
+}
+
+.vlevoNav {
+    float: left;
+}
+
+.vpravoNav {
+    float: right;
+}
+
+.nav1 {
+    margin: 0 5px 0 20px;
+}
+
+.nav2 {
+    margin: 0 5px 0 10px;
+}
+
+a:hover,
+a:active,
+a:link,
+a:visited {
+    text-decoration: none;
+    color: black;
+
+}
+
+a:active,
+a:hover {
+    color: rgb(29, 19, 172);
+    text-decoration: underline;
+}
+
+a.o1:active,
+a.o1:hover {
+    width: 25%;
+    height: 200px;
+    display: inline-block;
+}
+
+a:active,
+a:hover {
+    color: rgb(29, 19, 172);
+    text-decoration: underline;
+    width: 80%;
+}
+
+.o1 {
+    height: 200px;
+    display: inline-block;
+    margin: 15px 0 0 10px;
+}
+
+/* STYLOVÁNÍ PRO ZÁPATÍ */
+
+.footer {
+    border: 2px solid black;
+    background-color: #9A9DAF;
+    text-align: center;
+}
+
+/* STYLOVÁNÍ PRO NADPISY */
+
+h2 {
+    margin: 15px 0 5px 20px;
+    color: #343434;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 35px;
+    font-family: 'Orienta', sans-serif;
+}
+
+h3 {
+    margin: 14px 0 14px 20px;
+    color: #343434;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    font-family: 'Orienta', sans-serif;
+}
+
+.velke {
+    font-size: 25px;
+}
+
+/* STYLOVÁNÍ PRO OBRÁZKY */
+
+.obrazek {
+    float: left;
+    margin: 3px 20px 10px 10px;
+}
+
+.obrazek2 {
+    margin: 50px 20px 0 20px;
+    width: 100%;
+    height: auto;
+}
+
+.obrazek3 {
+    width: 95%;
+    height: auto;
+}
+
+.obrazek4 {
+    width: 75%;
+    height: auto;
+    margin-left: 50px;
+}
+
+/* STYLOVÁNÍ PRO VYSKAKOVACÍ OKNA */
+
+.popup {
+    display: none;
+    position: fixed;
+    border: 3px solid black;
+    border-radius: 5px;
+    left: 50%;
+    top: 50%;
+    z-index: 9;
+    transform: translate(-50%, -50%);
+    width: 400px;
+}
+
+.container {
+    max-width: 400px;
+    padding: 10px;
+    background-color: white;
+}
+
+.container input[type=text], .container input[type=password] {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0 5px 0;
+    border: none;
+    background: #f1f1f1;
+}
+
+.container .btn:hover, .open-button:hover {
+    opacity: 1;
+}
+
+.close {
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    float: right;
+    background-color: white;
+    border: 0;
+    margin-top: -10px;
+    margin-right: -5px;
+    cursor: pointer;
+}
+
+.close:hover {
+    position: relative;
+    color: #d0451b;
+}
+
+/* STYLOVÁNÍ PRO TLAČÍTKA */
+
+/* detail a upravení lodě/zaměstnance */
+.myButton1 {
+    background: linear-gradient(to bottom, #ffffff 5%, #e4e4f7 100%);
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #a699a6;
+    display: inline-block;
+    cursor: pointer;
+    color: #666666;
+    font-family: Arial, serif;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 2px 1px;
+    text-decoration: none;
+
+}
+
+.myButton1:hover {
+    background: linear-gradient(to bottom, #e4e4f7 5%, #ffffff 100%);
+    background-color: #e4e4f7;
+}
+
+.myButton1:active, .myButton2:active, .myButton3:active {
+    position: relative;
+    top: 1px;
+}
+
+/* odhlášení uživatele(v navigaci) */
+.myButton2 {
+    background: linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+    background-color: #d0451b;
+    border-radius: 5px;
+    border: 1px solid #942911;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial, serif;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 3px 24px;
+    text-decoration: none;
+}
+
+.myButton2:hover {
+    background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+    background-color: #bc3315;
+}
+
+/* přihlášení uživatele(v navigaci) */
+.myButton3 {
+    background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+    background-color: #7892c2;
+    border-radius: 5px;
+    border: 1px solid #4e6096;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial, serif;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 3px 24px;
+    text-decoration: none;
+}
+
+.myButton3:hover {
+    background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+    background-color: #476e9e;
+}
+
+.uprostred {
+    margin: 0 25% 5px 25%;
+    width: 50%
+}
+
+.uprostred2 {
+    margin: 0 10% 0 10%;
+    width: 80%;
+}
+
+
+
+
+
+
