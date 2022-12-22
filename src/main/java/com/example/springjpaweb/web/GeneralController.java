@@ -39,12 +39,12 @@ public class GeneralController {
         return "uvod";
     }
 
-    @GetMapping("/editace-lodi")
+    @GetMapping("/editace-klubu")
     public String getEditClubPage(Model model) {
 
         List<Owner> completeOwner = ownerService.getOwnerAndClub();
         model.addAttribute("clubData", completeOwner);
-        return "editace";
+        return "kluby";
 
     }
 
@@ -53,7 +53,7 @@ public class GeneralController {
 
         List<Worker> workerList = workerService.getAll();
         model.addAttribute("workers", workerList);
-        return "evidenceZamestnancu";
+        return "zamestnanci";
 
     }
 
