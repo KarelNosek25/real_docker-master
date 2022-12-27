@@ -312,11 +312,11 @@ function postPlayer(e) {
     let clubId = e.target.dataset.club_id
 
     const player = {
-        "playerFirstName": form.querySelector("#jmenoUpravit").value,
-        "playerSurName": form.querySelector("#prijmeniUpravit").value,
-        "age": form.querySelector("#vekUpravit").value,
-        "weight": form.querySelector("#vahaUpravit").value,
-        "position": form.querySelector("#poziceUpravit").value
+        "playerFirstName": form.querySelector("#jmenoHraceP").value,
+        "playerSurName": form.querySelector("#prijmeniHraceP").value,
+        "age": form.querySelector("#vekHraceP").value,
+        "weight": form.querySelector("#vahaHraceP").value,
+        "position": form.querySelector("#poziceHraceP").value
     }
 
     postData("http://localhost:8080/player/" + clubId, player)
@@ -336,12 +336,12 @@ function postClubAndOwner() {
     let form = document.getElementById("novyKlub")
 
     const data = {
-        "name": form.querySelector("#nazevKlubu").value,
-        "country": form.querySelector("#nazevZeme").value,
-        "philosophyType": form.querySelector("#filozofie").value,
-        "ownerFirstName": form.querySelector("#jmenoV").value,
-        "ownerSurName": form.querySelector("#prijmeniV").value,
-        "firmType": form.querySelector("#typFirmy").value
+        "name": form.querySelector("#nazevKlubuN").value,
+        "country": form.querySelector("#zemeN").value,
+        "philosophyType": form.querySelector("#filozofieN").value,
+        "ownerFirstName": form.querySelector("#jmenoVlastnikaN").value,
+        "ownerSurName": form.querySelector("#prijmeniVlastnikaN").value,
+        "firmType": form.querySelector("#typFirmyN").value
     }
 
     postData("http://localhost:8080/ownerAndCLub/", data)
