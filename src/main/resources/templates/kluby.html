@@ -93,6 +93,35 @@
     </form>
 </div>
 
+<div class="popup" id="myForm4">
+    <form class="container">
+        <button type="button" class="close" onclick="closeForm4()">x</button>
+        <h2>Zobrazit detail hráče</h2>
+        <div class="oddelit">
+            <label for="jmenoUpravit">Jméno hráče</label>
+            <input type="text" id="jmenoUpravit"><br>
+        </div>
+        <div class="oddelit">
+            <label for="prijmeniUpravit">Příjmení hráče</label>
+            <input type="text" id="prijmeniUpravit"><br>
+        </div>
+        <div class="oddelit">
+            <label for="vekUpravit">Věk</label>
+            <input type="number" id="vekUpravit"><br>
+        </div>
+        <div class="oddelit">
+            <label for="vahaUpravit">Váha</label>
+            <input type="number" id="vahaUpravit"><br>
+        </div>
+        <div class="oddelit">
+            <label for="poziceUpravit">Pozice</label>
+            <input type="text" id="poziceUpravit"><br>
+        </div>
+        <button type="submit" class="myButton3 uprostred" id="ulozitHrace">Uložit</button>
+        <button type="button" class="myButton2 uprostred" id="smazatHrace">Smazat</button>
+    </form>
+</div>
+
 <nav class="navigace obecne">
     <nav class="vlevoNav">
         <a class="nav1" href='/uvod'>ÚVOD </a>
@@ -157,7 +186,7 @@
         </table>
     </div>
 
-    <div class="odstavec2" id="hraciDiv" hidden="true">
+    <div class="odstavec2" id="playersNode" hidden="true">
     </div>
 
     <div>
