@@ -29,19 +29,19 @@ public class PlayerController {
         this.clubService = clubService;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('WORKER')")
     @GetMapping("/players/{clubId}")
     public List<Player> getPlayersOfClub(@PathVariable long clubId) {
         return playerService.getPlayersOfClub(clubId);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('WORKER')")
     @GetMapping("/player/{playerId}")
     public Optional<Player> getPlayer(@PathVariable long playerId) {
         return playerService.findById(playerId);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('WORKER')")
     @PostMapping("/player/{clubId}")
     public Player createPlayer(@PathVariable long clubId, @RequestBody Player player) {
         Optional<Club> club = clubService.findById(clubId);
@@ -49,7 +49,7 @@ public class PlayerController {
         return playerService.save(player);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('WORKER')")
     @PutMapping("/player/{id}")
     public Player updatePlayer(@PathVariable long id, @RequestBody Player playerData) {
         Optional<Player> playerFromDb = playerService.findById(id);
@@ -70,7 +70,7 @@ public class PlayerController {
         }
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('WORKER')")
     @DeleteMapping("/player/{id}")
     public void deletePlayer(@PathVariable long id) {
         playerService.delete(id);

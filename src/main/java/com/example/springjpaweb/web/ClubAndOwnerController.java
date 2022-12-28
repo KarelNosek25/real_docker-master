@@ -36,7 +36,7 @@ public class ClubAndOwnerController {
         this.playerService = playerService;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('WORKER')")
     @GetMapping("/owner/{id}")
     public Optional<Owner> getOwner(@PathVariable long id) {
         return ownerService.findById(id);
@@ -59,7 +59,7 @@ public class ClubAndOwnerController {
         ownerService.save(owner);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('WORKER')")
     @PutMapping("/club/{id}")
     public Club updateClub(@PathVariable long id, @RequestBody Club clubData) {
         Optional<Club> clubFromDb = clubService.findById(id);
@@ -78,7 +78,7 @@ public class ClubAndOwnerController {
         }
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('WORKER')")
     @PutMapping("/owner/{id}")
     public Owner updateOwner(@PathVariable long id, @RequestBody Owner ownerData) {
         Optional<Owner> ownerFromDb = ownerService.findById(id);
@@ -97,7 +97,7 @@ public class ClubAndOwnerController {
         }
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('WORKER')")
     @Transactional
     @DeleteMapping("/ownerAndClubWithPlayers/{ownerId}")
     public void deleteOwnerAndClub(@PathVariable long ownerId) {

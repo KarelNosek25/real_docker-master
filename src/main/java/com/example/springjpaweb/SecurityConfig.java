@@ -29,11 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors()
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
-                        .mvcMatchers("/editace-klubu").hasRole("ADMIN")
                         .mvcMatchers("/editace-zamestnancu").hasRole("ADMIN")
-                        .anyRequest().permitAll() //úvod
+                        .anyRequest().permitAll()
                 );
-
         http
                 .formLogin()
                 .defaultSuccessUrl("/", true)
