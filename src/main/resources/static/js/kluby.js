@@ -4,18 +4,18 @@ import {checkResponse} from "./lib/request.js";
 const loadPlayerButtons = document.querySelectorAll('.loadPlayerButton')
 
 loadPlayerButtons.forEach(function (currentBtn) {
-    currentBtn.addEventListener('click', getPlayers)
+    currentBtn.addEventListener('click', getAllPlayers)
 })
 
 const editClubButtons = document.querySelectorAll('.editClubButton')
 
 editClubButtons.forEach(function (currentBtn) {
-    currentBtn.addEventListener('click', getOwner)
+    currentBtn.addEventListener('click', getClubDetails)
 })
 
-document.getElementById("pridatKlub").addEventListener("click", postClubAndOwner)
+document.getElementById("pridatKlub").addEventListener("click", postClub)
 
-function getOwner(e) {
+function getClubDetails(e) {
     e.preventDefault()
     let ownerId = e.target.dataset.owner_id
     let clubId = e.target.dataset.club_id
@@ -32,7 +32,7 @@ function getOwner(e) {
                     return;
                 }
                 response.json().then(function (data) {
-                    fillEditOwnerForm(data, ownerId, clubId)
+                    fillClubDetails(data, ownerId, clubId)
                 });
             }
         )
@@ -42,7 +42,7 @@ function getOwner(e) {
         })
 }
 
-function fillEditOwnerForm(data, ownerId, clubId) {
+function fillClubDetails(data, ownerId, clubId) {
     let form = document.getElementById("myForm")
 
     form.querySelector("#nazevKlubu").value = data.club.name
@@ -55,16 +55,16 @@ function fillEditOwnerForm(data, ownerId, clubId) {
     let updateButton = form.querySelector("button#ulozitKlub");
     updateButton.setAttribute("data-owner_id", ownerId)
     updateButton.setAttribute("data-club_id", clubId)
-    updateButton.addEventListener("click", updateClubAndOwner)
+    updateButton.addEventListener("click", updateClub)
 
     let deleteButton = form.querySelector("button#smazatKlub");
     deleteButton.setAttribute("data-owner_id", ownerId)
-    deleteButton.addEventListener("click", deleteClubAndOwnerWithPlayers)
+    deleteButton.addEventListener("click", deleteClub)
 
     form.style.display = "block"
 }
 
-function updateClubAndOwner(e) {
+function updateClub(e) {
     e.preventDefault()
     let ownerId = e.target.dataset.owner_id
     let clubId = e.target.dataset.club_id
@@ -110,7 +110,7 @@ function updateClubAndOwner(e) {
         });
 }
 
-function deleteClubAndOwnerWithPlayers(e) {
+function deleteClub(e) {
     let ownerId = e.target.dataset.owner_id
 
     deleteData(`http://localhost:8080/ownerAndClubWithPlayers/${ownerId}`)
@@ -127,7 +127,32 @@ function deleteClubAndOwnerWithPlayers(e) {
         })
 }
 
-function getPlayers(e) {
+function postClub() {
+    let form = document.getElementById("novyKlub")
+
+    const data = {
+        "name": form.querySelector("#nazevKlubuN").value,
+        "country": form.querySelector("#zemeN").value,
+        "philosophyType": form.querySelector("#filozofieN").value,
+        "ownerFirstName": form.querySelector("#jmenoVlastnikaN").value,
+        "ownerSurName": form.querySelector("#prijmeniVlastnikaN").value,
+        "firmType": form.querySelector("#typFirmyN").value
+    }
+
+    postData("http://localhost:8080/ownerAndClub/", data)
+        .then(
+            function (response) {
+                checkResponse(response.status)
+                if (response.status !== 200) return;
+            }
+        )
+        .then(() => location.reload())
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+function getAllPlayers(e) {
     e.preventDefault()
     let clubId = e.target.dataset.club_id
     let clubName = e.target.dataset.club_name
@@ -146,7 +171,7 @@ function getPlayers(e) {
 
                 // Examine the text in the response
                 response.json().then(function (data) {
-                    fillPlayersTable(data, clubName, clubId)
+                    fillAllPlayers(data, clubName, clubId)
                 });
             }
         )
@@ -156,7 +181,7 @@ function getPlayers(e) {
         })
 }
 
-function fillPlayersTable(data, clubName, clubId) {
+function fillAllPlayers(data, clubName, clubId) {
 
     console.log(data)
     let tableNode = document.getElementById("playersNode")
@@ -195,7 +220,7 @@ function fillPlayersTable(data, clubName, clubId) {
         button.classList.add("myButton1")
         button.setAttribute("data-player_id", player.id)
         button.textContent = "Upravit"
-        button.addEventListener("click", getPlayer)
+        button.addEventListener("click", getPlayerDetails)
         row.insertCell(5).appendChild(button)
     })
 
@@ -211,7 +236,7 @@ function fillPlayersTable(data, clubName, clubId) {
 
 }
 
-function getPlayer(e) {
+function getPlayerDetails(e) {
     e.preventDefault()
 
     let playerId = e.target.dataset.player_id
@@ -229,7 +254,7 @@ function getPlayer(e) {
                 }
 
                 response.json().then(function (data) {
-                    fillEditPlayerForm(data, playerId)
+                    fillPlayerDetails(data, playerId)
                 });
             }
         )
@@ -239,7 +264,7 @@ function getPlayer(e) {
         })
 }
 
-function fillEditPlayerForm(data, playerId) {
+function fillPlayerDetails(data, playerId) {
 
     let form = document.getElementById("myForm4")
 
@@ -320,31 +345,6 @@ function postPlayer(e) {
     }
 
     postData("http://localhost:8080/player/" + clubId, player)
-        .then(
-            function (response) {
-                checkResponse(response.status)
-                if (response.status !== 200) return;
-            }
-        )
-        .then(() => location.reload())
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-}
-
-function postClubAndOwner() {
-    let form = document.getElementById("novyKlub")
-
-    const data = {
-        "name": form.querySelector("#nazevKlubuN").value,
-        "country": form.querySelector("#zemeN").value,
-        "philosophyType": form.querySelector("#filozofieN").value,
-        "ownerFirstName": form.querySelector("#jmenoVlastnikaN").value,
-        "ownerSurName": form.querySelector("#prijmeniVlastnikaN").value,
-        "firmType": form.querySelector("#typFirmyN").value
-    }
-
-    postData("http://localhost:8080/ownerAndClub/", data)
         .then(
             function (response) {
                 checkResponse(response.status)
