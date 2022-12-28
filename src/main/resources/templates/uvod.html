@@ -29,8 +29,8 @@
     </nav>
     <nav class="vpravoNav">
         <div sec:authorize="isAuthenticated()">
-            <a href="javascript: document.logoutForm.submit()" class="dropdown-toggle nav1"
-               th:text="${'ODHLÁSIT UŽIVATELE: ' + #authentication.getPrincipal().getUsername()}"></a>
+            <a href="javascript: document.logoutForm.submit()" class="dropdown-toggle nav3"
+               th:text="${'ODHLÁSIT '}"></a>
             <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
                 <input hidden type="submit" value="Sign Out"/>
             </form>
@@ -41,9 +41,7 @@
 <article class="clanek obecne">
     <h2>Základní info</h2>
     <div class="odstavec">
-
         <img src="/img/obr5.jpg" sizes="100x100" class="obrazek" alt="Obrázek stadionu">
-
         <p>
             Budova naší fotbalová databáze je umístěna na levém břehu Vltavy v Praze 8. Je určena hlavně pro evidenci
             fotbalových klubů a jejich hráčů. Může ale též sloužit pro evidenci zaměstnanců naší firmy. Pro bližší info

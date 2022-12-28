@@ -13,7 +13,7 @@ editClubButtons.forEach(function (currentBtn) {
     currentBtn.addEventListener('click', getOwner)
 })
 
-document.getElementById("novyKlub").addEventListener("click", postClubAndOwner)
+document.getElementById("pridatKlub").addEventListener("click", postClubAndOwner)
 
 function getOwner(e) {
     e.preventDefault()
@@ -167,7 +167,7 @@ function fillPlayersTable(data, clubName, clubId) {
 
     let header3 = document.createElement("H3")
     header3.classList.add("velke")
-    header3.textContent = `Hráči klubu: '${clubName}' a ID = ${clubId}:`
+    header3.textContent = `Hráči klubu: '${clubName}'`
     tableNode.appendChild(header3)
 
     let table = document.createElement("table");
@@ -191,7 +191,7 @@ function fillPlayersTable(data, clubName, clubId) {
         row.insertCell(4).appendChild(document.createTextNode(player.position))
 
         let button = document.createElement("BUTTON")
-        button.classList.add("uprostred2")
+        button.classList.add("uprostred")
         button.classList.add("myButton1")
         button.setAttribute("data-player_id", player.id)
         button.textContent = "Upravit"
@@ -344,7 +344,7 @@ function postClubAndOwner() {
         "firmType": form.querySelector("#typFirmyN").value
     }
 
-    postData("http://localhost:8080/ownerAndCLub/", data)
+    postData("http://localhost:8080/ownerAndClub/", data)
         .then(
             function (response) {
                 checkResponse(response.status)

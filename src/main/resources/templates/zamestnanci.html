@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-l
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,8 +29,8 @@ l
     </nav>
     <nav class="vpravoNav">
         <div sec:authorize="isAuthenticated()">
-            <a href="javascript: document.logoutForm.submit()" class="dropdown-toggle nav1"
-               th:text="${'ODHLÁSIT UŽIVATELE: ' + #authentication.getPrincipal().getUsername()}"></a>
+            <a href="javascript: document.logoutForm.submit()" class="dropdown-toggle nav3"
+               th:text="${'ODHLÁSIT '}"></a>
             <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
                 <input hidden type="submit" value="Sign Out"/>
             </form>
@@ -65,8 +65,8 @@ l
             <label for="telefon">Telefon</label>
             <input type="text" id="telefon"><br>
         </div>
-        <button type="submit" class="myButton3 uprostred" id="updateWorker">Uložit</button>
-        <button type="button" class="myButton2 uprostred" id="deleteWorker">Smazat</button>
+        <button type="submit" class="myButton3 uprostred2" id="updateWorker">Uložit</button>
+        <button type="button" class="myButton2 uprostred2" id="deleteWorker">Smazat</button>
     </form>
 </div>
 
@@ -143,7 +143,7 @@ l
                 <input class="vpravo" type="text" placeholder="Telefonní číslo" id="phone"><br>
             </div>
             <div class="oddelit">
-                <input class="myButton1 uprostred" id="postWorker" type="submit" value="Přidat">
+                <input class="myButton1 uprostred3" id="postWorker" type="submit" value="Přidat">
             </div>
         </div>
     </div>

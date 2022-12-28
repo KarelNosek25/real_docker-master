@@ -42,7 +42,7 @@ public class ClubAndOwnerController {
         return ownerService.findById(id);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('WORKER')")
     @PostMapping("/ownerAndClub")
     public void createOwnerWithClub(@RequestBody Map<String, String> data) {
         PhilosophyType philosophyType = PhilosophyType.valueOf(data.get("philosophyType"));

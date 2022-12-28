@@ -60,8 +60,8 @@
                 <option value="OTHERS">Ostatní</option>
             </select><br>
         </div>
-        <button type="submit" class="myButton3 uprostred" id="ulozitKlub">Uložit</button>
-        <button type="button" class="myButton2 uprostred" id="smazatKlub">Smazat</button>
+        <button type="submit" class="myButton3 uprostred2" id="ulozitKlub">Uložit</button>
+        <button type="button" class="myButton2 uprostred2" id="smazatKlub">Smazat</button>
     </form>
 </div>
 
@@ -130,8 +130,8 @@
     </nav>
     <nav class="vpravoNav">
         <div sec:authorize="isAuthenticated()">
-            <a href="javascript: document.logoutForm.submit()" class="dropdown-toggle nav1"
-               th:text="${'ODHLÁSIT UŽIVATELE: ' + #authentication.getPrincipal().getUsername()}"></a>
+            <a href="javascript: document.logoutForm.submit()" class="dropdown-toggle nav3"
+               th:text="${'ODHLÁSIT '}"></a>
             <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
                 <input hidden type="submit" value="Sign Out"/>
             </form>
@@ -190,7 +190,7 @@
     </div>
 
     <div>
-        <button type="button" class="myButton1 uprostred" id="addNewPlayer" onclick="openForm3()"
+        <button type="button" class="myButton1 uprostred3" id="addNewPlayer" onclick="openForm3()"
                 style="display: none;">
             Přidat nového hráče
         </button>
@@ -223,11 +223,11 @@
             </div>
             <div class="oddelit">
                 <label>Jméno vlastníka klubu:</label>
-                <input class="vpravo" type="text" id="jmenoVlastnikaN"><br>
+                <input class="vpravo" type="text" placeholder="Jméno vlastníka" id="jmenoVlastnikaN"><br>
             </div>
             <div class="oddelit">
                 <label>Příjmení vlastníka klubu:</label>
-                <input class="vpravo" type="text" id="prijmeniVlastnikaN"><br>
+                <input class="vpravo" type="text" placeholder="Příjmení vlastníka" id="prijmeniVlastnikaN"><br>
             </div>
             <div class="oddelit">
                 <label>Typ firmy:</label>
@@ -240,7 +240,7 @@
                 </select><br>
             </div>
             <div class="oddelit">
-                <input class="myButton1 uprostred" type="submit" value="Přidat" id="pridatKlub">
+                <input class="myButton1 uprostred3" type="submit" value="Přidat" id="pridatKlub">
             </div>
         </div>
     </div>
