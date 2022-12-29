@@ -36,12 +36,14 @@ public class ClubAndOwnerController {
         this.playerService = playerService;
     }
 
+    // vyhledání vlastníka klubu dle jeho id
     @PreAuthorize("hasRole('WORKER')")
     @GetMapping("/owner/{id}")
     public Optional<Owner> getOwner(@PathVariable long id) {
         return ownerService.findById(id);
     }
 
+    //přiřazení údajů o vlastníkovi klubu ke klubu samotnému
     @PreAuthorize("hasRole('WORKER')")
     @PostMapping("/ownerAndClub")
     public void createOwnerWithClub(@RequestBody Map<String, String> data) {
@@ -59,6 +61,7 @@ public class ClubAndOwnerController {
         ownerService.save(owner);
     }
 
+    // při kliknutí na "Upravit" se údaje o klubu načtou do malé tabulky
     @PreAuthorize("hasRole('WORKER')")
     @PutMapping("/club/{id}")
     public Club updateClub(@PathVariable long id, @RequestBody Club clubData) {
@@ -78,6 +81,7 @@ public class ClubAndOwnerController {
         }
     }
 
+    // při kliknutí na "Upravit" se údaje o vlastníkovi klubu načtou do malé tabulky
     @PreAuthorize("hasRole('WORKER')")
     @PutMapping("/owner/{id}")
     public Owner updateOwner(@PathVariable long id, @RequestBody Owner ownerData) {
@@ -97,6 +101,7 @@ public class ClubAndOwnerController {
         }
     }
 
+    // při kliknutí na "Smazat" se smaže klub, vlastník i hráči klubu
     @PreAuthorize("hasRole('WORKER')")
     @Transactional
     @DeleteMapping("/ownerAndClubWithPlayers/{ownerId}")
@@ -112,6 +117,8 @@ public class ClubAndOwnerController {
         clubService.delete(clubId);
     }
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // ošetření chyb
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleAccesDeniedException(AccessDeniedException e) {
         e.printStackTrace();

@@ -34,11 +34,13 @@ public class GeneralController {
         this.playerService = playerService;
     }
 
+    //stránka "ÚVOD"
     @GetMapping(value = {"/", "/uvod"})
     public String getHomePage() {
         return "uvod";
     }
 
+    //stránka "EDITACE KLUBŮ"
     @GetMapping("/editace-klubu")
     public String getEditClubPage(Model model) {
 
@@ -48,6 +50,7 @@ public class GeneralController {
 
     }
 
+    //stránka "EVIDENCE ZAMĚSTNANCŮ"
     @GetMapping("/editace-zamestnancu")
     public String getEditEmployeePage(Model model) {
 
@@ -57,11 +60,14 @@ public class GeneralController {
 
     }
 
+    //stránka "ERROR"
     @GetMapping("/error")
     public String getErrorPage() {
         return "error";
     }
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // ošetření chyb
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleAccesDeniedException(AccessDeniedException e) {
         e.printStackTrace();

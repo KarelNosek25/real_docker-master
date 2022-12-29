@@ -27,18 +27,21 @@ public class WorkerController {
         this.workerService = workerService;
     }
 
+    //najití pracovníka dle id
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/worker/{id}")
     public Optional<Worker> getWorker(@PathVariable long id) {
         return workerService.findById(id);
     }
 
+    //vytvoření pracovníka (při plnění databáze)
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/worker")
     public Worker createWorker(@RequestBody Worker worker) {
         return workerService.save(worker);
     }
 
+    // při kliknutí na "Upravit" se údaje o pracovníkovi načtou do malé tabulky
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/worker/{id}")
     public Worker updateWorker(@PathVariable long id, @RequestBody Worker workerData) {
@@ -60,12 +63,15 @@ public class WorkerController {
         }
     }
 
+    //smazání pracovníka
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/worker/{id}")
     public void deleteWorker(@PathVariable long id) {
         workerService.delete(id);
     }
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // ošetření chyb
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleAccesDeniedException(AccessDeniedException e) {
         e.printStackTrace();

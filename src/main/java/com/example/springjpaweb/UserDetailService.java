@@ -16,6 +16,7 @@ public class UserDetailService implements UserDetailsService {
     @Autowired
     private WorkerRepository workerRepository;
 
+    //vyhledání uživatele při pokusu o přihlášení na web
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -27,6 +28,7 @@ public class UserDetailService implements UserDetailsService {
 
         UserDetails user;
 
+        //určení rolí každého zaměstnance (admin má svá práva a taktéž práva workera)
         switch (worker.getRole()) {
             case WORKER:
                 user = User

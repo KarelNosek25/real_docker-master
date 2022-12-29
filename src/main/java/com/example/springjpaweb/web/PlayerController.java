@@ -29,18 +29,21 @@ public class PlayerController {
         this.clubService = clubService;
     }
 
+    //vyhledání všech hráčů určítého klubu (po kliknutí na "Hráči")
     @PreAuthorize("hasRole('WORKER')")
     @GetMapping("/players/{clubId}")
     public List<Player> getPlayersOfClub(@PathVariable long clubId) {
         return playerService.getPlayersOfClub(clubId);
     }
 
+    //vyhledání hráče dle jeho id
     @PreAuthorize("hasRole('WORKER')")
     @GetMapping("/player/{playerId}")
     public Optional<Player> getPlayer(@PathVariable long playerId) {
         return playerService.findById(playerId);
     }
 
+    //vytvoření hráče při plnění databáze
     @PreAuthorize("hasRole('WORKER')")
     @PostMapping("/player/{clubId}")
     public Player createPlayer(@PathVariable long clubId, @RequestBody Player player) {
@@ -49,6 +52,7 @@ public class PlayerController {
         return playerService.save(player);
     }
 
+    // při kliknutí na "Upravit" se údaje o hráči načtou do malé tabulky
     @PreAuthorize("hasRole('WORKER')")
     @PutMapping("/player/{id}")
     public Player updatePlayer(@PathVariable long id, @RequestBody Player playerData) {
@@ -70,12 +74,15 @@ public class PlayerController {
         }
     }
 
+    // smazání hráče
     @PreAuthorize("hasRole('WORKER')")
     @DeleteMapping("/player/{id}")
     public void deletePlayer(@PathVariable long id) {
         playerService.delete(id);
     }
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // ošetření chyb
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleAccesDeniedException(AccessDeniedException e) {
         e.printStackTrace();

@@ -22,6 +22,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private UserDetailsService userDetailsService;
 
+    // mvcMatchers určí, jaké oprávnění (role pracovníka) může na jakou stránku
+    // vyzve ho tak na přihlášení
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
