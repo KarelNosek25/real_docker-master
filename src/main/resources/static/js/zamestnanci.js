@@ -9,6 +9,8 @@ editWorkerButtons.forEach(function (currentBtn) {
 
 document.getElementById("postWorker").addEventListener("click", postWorker)
 
+//---------------------------------------------ZAMĚSTNANCI--------------------------------------
+//vytvoření nového zaměstnance
 function postWorker() {
 
     let form = document.getElementById("newWorkerForm")
@@ -35,6 +37,7 @@ function postWorker() {
         });
 }
 
+// když chci načíst údaje nějakého zaměstnance (v menší tabulce)
 function editWorker(e) {
     e.preventDefault()
     let workerId = e.target.dataset.worker_id
@@ -51,8 +54,6 @@ function editWorker(e) {
                     alert("problem při čtení databáze: [" + response.status + "]")
                     return;
                 }
-
-                // Examine the text in the response
                 response.json().then(function (data) {
                     fillWorkerForm(data, workerId)
                 });
@@ -64,6 +65,7 @@ function editWorker(e) {
         })
 }
 
+//po kliknutí na "Upravit" se načte tabulka s údaji daného zaměstnance
 function fillWorkerForm(data, workerId) {
     let form = document.getElementById("myForm")
 
@@ -73,10 +75,12 @@ function fillWorkerForm(data, workerId) {
     form.querySelector("#email").value = data.email
     form.querySelector("#telefon").value = data.phone
 
+    // tlačítko pro uložení pracovníka
     let updateButton = form.querySelector("button#updateWorker");
     updateButton.setAttribute("data-worker_id", workerId)
     updateButton.addEventListener("click", updateWorker)
 
+    // tlačítko pro smazání pracovníka
     let deleteButton = form.querySelector("button#deleteWorker");
     deleteButton.setAttribute("data-worker_id", workerId)
     deleteButton.addEventListener("click", deleteWorker)
@@ -84,6 +88,7 @@ function fillWorkerForm(data, workerId) {
     form.style.display = "block"
 }
 
+// smazání daného zaměstnance
 function deleteWorker(e) {
     let workerId = e.target.dataset.worker_id
 
@@ -101,6 +106,7 @@ function deleteWorker(e) {
         })
 }
 
+// uložení nových údajů již existujícího zaměstnance
 function updateWorker(e) {
     e.preventDefault()
     let workerId = e.target.dataset.worker_id

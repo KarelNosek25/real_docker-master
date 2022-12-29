@@ -15,6 +15,8 @@ editClubButtons.forEach(function (currentBtn) {
 
 document.getElementById("pridatKlub").addEventListener("click", postClub)
 
+//---------------------------------------------KLUBY-----------------------------------------
+//když chci načíst údaje nějakého klubu (v menší tabulce)
 function getClubDetails(e) {
     e.preventDefault()
     let ownerId = e.target.dataset.owner_id
@@ -42,6 +44,7 @@ function getClubDetails(e) {
         })
 }
 
+//po kliknutí na "Upravit" se načte tabulka s údaji daného klubu a jeho vlastníka
 function fillClubDetails(data, ownerId, clubId) {
     let form = document.getElementById("myForm")
 
@@ -52,11 +55,13 @@ function fillClubDetails(data, ownerId, clubId) {
     form.querySelector("#jmenoV").value = data.ownerFirstName
     form.querySelector("#prijmeniV").value = data.ownerSurName
 
+    // tlačítko pro uložení klubu a vlastníka klubu
     let updateButton = form.querySelector("button#ulozitKlub");
     updateButton.setAttribute("data-owner_id", ownerId)
     updateButton.setAttribute("data-club_id", clubId)
     updateButton.addEventListener("click", updateClub)
 
+    // tlačítko pro smazání klubu a vlastníka klubu
     let deleteButton = form.querySelector("button#smazatKlub");
     deleteButton.setAttribute("data-owner_id", ownerId)
     deleteButton.addEventListener("click", deleteClub)
@@ -64,6 +69,7 @@ function fillClubDetails(data, ownerId, clubId) {
     form.style.display = "block"
 }
 
+// uložení nových údajů již existujícího klubu a jeho vlastníka
 function updateClub(e) {
     e.preventDefault()
     let ownerId = e.target.dataset.owner_id
@@ -71,6 +77,7 @@ function updateClub(e) {
 
     let form = document.getElementById("myForm")
 
+    //údaje o klubu
     const club = {
         "id": clubId,
         "name": form.querySelector("#nazevKlubu").value,
@@ -78,6 +85,7 @@ function updateClub(e) {
         "philosophyType": form.querySelector("#filozofie").value,
     }
 
+    //údaje o vlastníkovi klubu
     const owner = {
         "id": ownerId,
         "ownerFirstName": form.querySelector("#jmenoV").value,
@@ -110,6 +118,7 @@ function updateClub(e) {
         });
 }
 
+// smazání klubu, jeho vlastníka i všech hráčů
 function deleteClub(e) {
     let ownerId = e.target.dataset.owner_id
 
@@ -127,6 +136,7 @@ function deleteClub(e) {
         })
 }
 
+//odeslání nového klubu a jeho vlastníka
 function postClub() {
     let form = document.getElementById("novyKlub")
 
@@ -152,6 +162,9 @@ function postClub() {
         });
 }
 
+//---------------------------------------------NÁKLADY--------------------------------------
+
+// když chci načíst hráče nějakého klubu
 function getAllPlayers(e) {
     e.preventDefault()
     let clubId = e.target.dataset.club_id
@@ -181,20 +194,24 @@ function getAllPlayers(e) {
         })
 }
 
+// naplnění tabulky hráčů daného klubu
 function fillAllPlayers(data, clubName, clubId) {
 
     console.log(data)
     let tableNode = document.getElementById("playersNode")
 
+    // smazání starých tabulek na této pozici
     while (tableNode.firstChild) {
         tableNode.removeChild(tableNode.firstChild);
     }
 
+    // vytvoření nadpisu
     let header3 = document.createElement("H3")
     header3.classList.add("velke")
     header3.textContent = `Hráči klubu: '${clubName}'`
     tableNode.appendChild(header3)
 
+    // vytvoření tabulky
     let table = document.createElement("table");
     table.classList.add("table2")
     let head = ["Jméno hráče", "Příjmení hráče", "Věk", "Váha", "Pozice", "Upravit"]
@@ -206,7 +223,7 @@ function fillAllPlayers(data, clubName, clubId) {
         headRow.appendChild(headCell)
     })
 
-
+    // naplnění tabulky
     data.forEach((player) => {
         let row = table.insertRow()
         row.insertCell(0).appendChild(document.createTextNode(player.playerFirstName))
@@ -215,6 +232,7 @@ function fillAllPlayers(data, clubName, clubId) {
         row.insertCell(3).appendChild(document.createTextNode(player.weight))
         row.insertCell(4).appendChild(document.createTextNode(player.position))
 
+        // vytvoření tlačítka a jeho stylování
         let button = document.createElement("BUTTON")
         button.classList.add("uprostred")
         button.classList.add("myButton1")
@@ -224,18 +242,22 @@ function fillAllPlayers(data, clubName, clubId) {
         row.insertCell(5).appendChild(button)
     })
 
+    // vytvoření tlačítka pro přidání nového hráče (vyskakovací okno se ukáže)
     let addNewPlayerButton = document.getElementById("addNewPlayer")
     addNewPlayerButton.style.display = "inline-block"
 
+    // uložení nového hráče
     let postPlayerButton = document.getElementById("ulozitHraceP")
     postPlayerButton.setAttribute("data-club_id", clubId)
     postPlayerButton.addEventListener("click", postPlayer)
 
+    // tabulka se ukáže (ve výchozím stavu je tabulka skryta)
     tableNode.appendChild(table)
     tableNode.hidden = false
 
 }
 
+//pokud chci hráče upravit (načíst jeho údaje v menší tabulce)
 function getPlayerDetails(e) {
     e.preventDefault()
 
@@ -264,6 +286,7 @@ function getPlayerDetails(e) {
         })
 }
 
+//po kliknutí na "Upravit" se načte tabulka s údaji daných hráčů
 function fillPlayerDetails(data, playerId) {
 
     let form = document.getElementById("myForm4")
@@ -286,6 +309,7 @@ function fillPlayerDetails(data, playerId) {
 
 }
 
+// uložení nových údajů již existujícího hráče
 function updatePlayer(e) {
     e.preventDefault()
     let playerId = e.target.dataset.player_id
@@ -314,6 +338,7 @@ function updatePlayer(e) {
         });
 }
 
+// smazání hráče
 function deletePlayer(e) {
     let playerId = e.target.dataset.player_id
 
@@ -331,6 +356,7 @@ function deletePlayer(e) {
         })
 }
 
+//odeslání nového hráče do databáze
 function postPlayer(e) {
     e.preventDefault()
     let form = document.getElementById("myForm3")
