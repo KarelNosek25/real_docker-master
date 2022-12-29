@@ -22,28 +22,34 @@ public class WorkerService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    //uložení pracovníka do databáze
     public Worker save(Worker worker) {
         worker.setPassword(passwordEncoder.encode(worker.getPassword()));
         return repository.save(worker);
     }
 
+    //vyhledání pracovníka dle emailu
     public Worker findByEmail(String email) {
         return repository.findWorkerByEmail(email);
     }
 
+    //update workera při plnění databáze (doplní se role)
     public Worker update(Worker worker) {
         return repository.save(worker);
     }
 
+    //vyhledání id daného pracovníka (při kliknutí na "Upravit")
     public Optional<Worker> findById(long id) {
         Optional<Worker> worker = repository.findById(id);
         return worker;
     }
 
+    //smazání pracovníka dle id
     public void delete(long id) {
         repository.deleteById(id);
     }
 
+    //vyhledání všech pracovníků
     public List<Worker> getAll() {
         List<Worker> workers = repository.findAll();
         return workers;

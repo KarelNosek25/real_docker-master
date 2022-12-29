@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface PlayerRepository extends JpaRepository<Player, Long> {
 
+    //zobrazení hráčů každého klubu
     @Query("SELECT c FROM Player c LEFT JOIN c.club s WHERE s.id = :clubId")
     List<Player> findPlayersByClubId(
             @Param("clubId") long clubId

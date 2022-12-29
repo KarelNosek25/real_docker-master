@@ -16,22 +16,27 @@ public class PlayerService {
         this.repository = repository;
     }
 
+    //smazání hráče dle id
     public void delete(long id){
         repository.deleteById(id);
     }
 
+    //uložení hráče do databáze
     public Player save(Player player) {
         return repository.save(player);
     }
 
+    //vyhledání všech hráčů
     public List<Player> getAll() {
         return repository.findAll();
     }
 
+    //vyhledání id daného hráče (při kliknutí na "Upravit")
     public Optional<Player> findById(long id) {
         return repository.findById(id);
     }
 
+    //vyhledání všech hráčů daného klubu (při kliknutí na "Hráči")
     public List<Player> getPlayersOfClub(long clubId) {
         return repository.findPlayersByClubId(clubId);
     }

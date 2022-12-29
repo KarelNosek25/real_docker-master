@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface WorkerRepository extends JpaRepository<Worker, Long> {
 
+    //zobrazení všech zaměstnanců firmy
     Worker findWorkerByEmail(String email);
 }

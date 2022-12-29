@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface OwnerRepository extends JpaRepository<Owner, Long> {
 
+    //zobrazení vlastníků každého klubu
     @Query("SELECT DISTINCT ow FROM Owner ow LEFT JOIN ow.club sh")
     List<Owner> findOwnersAndClub();
 }

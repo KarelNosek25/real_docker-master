@@ -17,22 +17,27 @@ public class OwnerService {
         this.repository = repository;
     }
 
+    //uložení vlastníka klubu do databáze
     public Owner save(Owner owner) {
         return repository.save(owner);
     }
 
+    //vyhledání vlastníka a klubu
     public List<Owner> getOwnerAndClub() {
         return repository.findOwnersAndClub();
     }
 
+    //smazání vlastníka klubu dle id
     public void delete(long id) {
         repository.deleteById(id);
     }
 
+    //vyhledání id daného vlastníka klubu (při kliknutí na "Upravit")
     public Optional<Owner> findById(long id) {
         return repository.findById(id);
     }
 
+    //vyhledání všech vlastníků klubů
     public List<Owner> getAll() {
         return repository.findAll();
     }
