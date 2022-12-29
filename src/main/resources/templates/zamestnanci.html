@@ -2,6 +2,8 @@
 <html xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
+<!--EVIDENCE ZAMĚSTNANCŮ-->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,10 +19,12 @@
 
 <body>
 
+<!-- nadpis -->
 <header class="obecne">
     <img src="/img/logo.png" class="logo" alt="Fotbalová databáze Nosek">
 </header>
 
+<!-- navigace -->
 <nav class="navigace obecne">
     <nav class="vlevoNav">
         <a class="nav1" href='/uvod'>ÚVOD </a>
@@ -38,6 +42,7 @@
     </nav>
 </nav>
 
+<!-- Vyskakovací okno pro detail zaměstnance-->
 <div class="popup" id="myForm">
     <form class="container">
         <button type="button" class="close" onclick="closeForm()">x</button>
@@ -70,6 +75,7 @@
     </form>
 </div>
 
+<!-- tabulka se zaměstnanci -->
 <article class="clanek2 obecne">
     <h2 class="uprostredN">Evidence zaměstnanců</h2>
     <div class="odstavec2">
@@ -109,7 +115,6 @@
     <div class="odstavec2 odsadit2">
         <h3 class="velke"> Přidat nového zaměstnance:</h3>
 
-        <!--obrázek-->
         <div class="obrVpravo">
             <img src="/img/obr1.jpg" class="obrazek4" alt="Obrázek zaměstnanců">
         </div>
@@ -149,10 +154,12 @@
     </div>
 </article>
 
+<!-- zápatí -->
 <div class="footer obecne">
     <p> Copyright &copy; 2023 | Karel Nosek - studentský projekt z předmětu PPRO</p>
 </div>
 
+<!-- skripty -->
 <script src="/js/lib/popupWindow.js"></script>
 <script type="module" src="/js/zamestnanci.js"></script>
 

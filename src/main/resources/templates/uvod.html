@@ -2,6 +2,8 @@
 <html xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
+<!--HLAVNÍ STRÁNKA-->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,10 +19,12 @@
 
 <body>
 
+<!-- nadpis -->
 <header class="obecne">
     <img src="/img/logo.png" class="logo" alt="Fotbalová databáze Nosek">
 </header>
 
+<!-- navigace -->
 <nav class="navigace obecne">
     <nav class="vlevoNav">
         <a class="nav1" href='/uvod'>ÚVOD </a>
@@ -38,6 +42,7 @@
     </nav>
 </nav>
 
+<!-- článek: základní info -->
 <article class="clanek obecne">
     <h2>Základní info</h2>
     <div class="odstavec">
@@ -57,6 +62,7 @@
     </div>
 </article>
 
+<!-- článek: část pro zaměstnance -->
 <article class="clanek obecne">
     <h2>Část pro zaměstnance</h2>
     <div class="odstavec">
@@ -78,10 +84,12 @@
     </div>
 </article>
 
+<!-- zápatí -->
 <div class="footer obecne">
     <p> Copyright &copy; 2023 | Karel Nosek - studentský projekt z předmětu PPRO</p>
 </div>
 
+<!-- skripty -->
 <script src="/js/lib/popupWindow.js"></script>
 
 </body>

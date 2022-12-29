@@ -2,6 +2,8 @@
 <html xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
+<!--EDITACE KLUBŮ-->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,10 +19,12 @@
 
 <body>
 
+<!-- nadpis -->
 <header class="obecne">
     <img src="/img/logo.png" class="logo" alt="Fotbalová databáze Nosek">
 </header>
 
+<!-- Vyskakovací okno pro zobrazení detailu klubu -->
 <div class="popup" id="myForm">
     <form class="container">
         <button type="button" class="close" onclick="closeForm()">x</button>
@@ -65,6 +69,7 @@
     </form>
 </div>
 
+<!-- Vyskakovací okno pro přidání hráče danému klubu -->
 <div class="popup" id="myForm3">
     <form class="container">
         <button type="button" class="close" onclick="closeForm3()">x</button>
@@ -93,6 +98,7 @@
     </form>
 </div>
 
+<!-- Vyskakovací okno pro zobrazení detailu hráče -->
 <div class="popup" id="myForm4">
     <form class="container">
         <button type="button" class="close" onclick="closeForm4()">x</button>
@@ -122,6 +128,7 @@
     </form>
 </div>
 
+<!-- navigace -->
 <nav class="navigace obecne">
     <nav class="vlevoNav">
         <a class="nav1" href='/uvod'>ÚVOD </a>
@@ -139,6 +146,7 @@
     </nav>
 </nav>
 
+<!-- tabulka s kluby -->
 <article class="clanek3 obecne">
     <h2 class="uprostredN">Editace klubu</h2>
     <div class="odstavec2">
@@ -186,9 +194,11 @@
         </table>
     </div>
 
+    <!-- Tabulka pro načtení hráčů daného klubu -->
     <div class="odstavec2" id="playersNode" hidden="true">
     </div>
 
+    <!-- přidání nového hráče -->
     <div>
         <button type="button" class="myButton1 uprostred3" id="addNewPlayer" onclick="openForm3()"
                 style="display: none;">
@@ -196,6 +206,7 @@
         </button>
     </div>
 
+    <!-- přidání nové lodě -->
     <div class="odstavec2">
         <h3 class="velke">Přidat nový klub</h3>
 
@@ -246,10 +257,12 @@
     </div>
 </article>
 
+<!-- zápatí -->
 <div class="footer obecne">
     <p> Copyright &copy; 2023 | Karel Nosek - studentský projekt z předmětu PPRO</p>
 </div>
 
+<!-- skripty -->
 <script src="/js/lib/popupWindow.js"></script>
 <script type="module" src="/js/kluby.js"></script>
 
